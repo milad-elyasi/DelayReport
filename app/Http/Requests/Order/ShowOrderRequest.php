@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Dto\Order\ShowOrderDto;
 use App\Http\Requests\BaseFormRequest;
 
 class ShowOrderRequest extends BaseFormRequest
@@ -9,12 +10,17 @@ class ShowOrderRequest extends BaseFormRequest
     public function rules(): array
     {
         return [
-            'vendorId' => ['nullable', 'int', 'min:1'],
+            'id' => ['nullable', 'int', 'min:1'],
         ];
     }
 
-    public function getVendorId(): ?int
+    public function prepareForValidation()
     {
-        return $this->get('vendorId');
+        $this->merge(['id' => $this->route('id')]);
+    }
+
+    public function getDto(): ShowOrderDto
+    {
+        return ShowOrderDto::fromArray($this->validated());
     }
 }

@@ -2,21 +2,17 @@
 
 namespace App\Models;
 
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @method static UserFactory factory($count = null, $state = [])
- */
-class User extends Model
+class Agent extends Model
 {
     use HasFactory;
 
-    protected $table = 'users';
+    protected $table = 'agents';
 
-    public function orders(): HasMany
+    public function assignees(): HasMany
     {
         return $this->hasMany(Assignee::class);
     }

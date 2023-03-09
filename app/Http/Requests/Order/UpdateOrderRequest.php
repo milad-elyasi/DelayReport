@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Dto\Order\CreateTripDto;
 use App\Dto\Order\UpdateOrderDto;
 use App\Http\Requests\BaseFormRequest;
 use OpenApi\Annotations as OA;
