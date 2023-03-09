@@ -1,0 +1,65 @@
+version: "3.9"
+
+services:
+    ## --------------------------------------------------
+    ## | Webserver - Nginx
+    ## --------------------------------------------------
+    snappfood_webserver:
+        image: nginx:1.23.1
+        container_name: snappfood_webserver
+        restart: unless-stopped
+        ports:
+            - "9025:80"
+        volumes:
+            - ./:/var/www
+            - ./.docker/snappfood_webserver/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - snappfood_backend
+        networks:
+            - snappfood-network
+
+    ## --------------------------------------------------
+    ## | Backend - Php service
+    ## --------------------------------------------------
+    snappfood_backend:
+        build:
+            args:
+                user: snappfood
+                uid: ${UID}
+            context: .
+            dockerfile: .docker/snappfood_backend/Dockerfile
+        container_name: snappfood_backend
+        restart: unless-stopped
+        tty: true
+        environment:
+            - APP_ENV=local
+        volumes:
+            - ./:/var/www
+            - ./.docker/snappfood_backend/config/php.ini:/usr/local/etc/php/php.ini
+        networks:
+            - snappfood-network
+    ## --------------------------------------------------
+    ## | Mysql - Database service
+    ## --------------------------------------------------
+    snappfood_mysql:
+        container_name: snappfood-mysql
+        hostname: snappfood-mysql
+        build:
+            context: .docker/snappfood_mysql
+            dockerfile: Dockerfile
+        environment:
+            MYSQL_DATABASE: snappfood
+            MYSQL_USER: snappfood
+            MYSQL_PASSWORD: snappfood
+            MYSQL_ROOT_PASSWORD: snappfood
+        ports:
+            - "3310:3306"
+        volumes:
+            - .docker/snappfood_mysql/data:/var/lib/mysql
+        restart: always
+        networks:
+            snappfood-network:
+networks:
+    snappfood-network:
+        driver: bridge
+
