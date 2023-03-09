@@ -5,6 +5,8 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+
 
 /**
  * @method User create($attributes = [], ?Model $parent = null)
@@ -16,15 +18,11 @@ class UserFactory extends Factory
 
     public function definition(): array
     {
-        $mobile = $this->faker->unique()->e164PhoneNumber();
         return [
-            'uuid' => $this->faker->uuid(),
-            'username' => $mobile,
-            'mobile' => $mobile,
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
             'remember_token' => 'foo',
-            'voximplant_password' => 'bar',
-            'lastlocation' => 'Tehran',
-            'skyroom_userid' => 'buzz',
+            'password' => Hash::make($this->faker->password),
         ];
     }
 }
