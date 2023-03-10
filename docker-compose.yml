@@ -19,7 +19,7 @@ services:
             - snappfood-network
 
     ## --------------------------------------------------
-    ## | Backend - Php service
+    ## | Backend - PHP service
     ## --------------------------------------------------
     snappfood_backend:
         build:
@@ -38,6 +38,18 @@ services:
             - ./.docker/snappfood_backend/config/php.ini:/usr/local/etc/php/php.ini
         networks:
             - snappfood-network
+    ## --------------------------------------------------
+    ## | Redis - Redis service
+    ## --------------------------------------------------
+    snappfood_redis:
+        container_name: snappfood_redis
+        hostname: snappfood-redis
+        image: redis:5
+        restart: always
+        volumes:
+            - ./.docker/snappfood_redis/data:/data
+        networks:
+            snappfood-network:
     ## --------------------------------------------------
     ## | Mysql - Database service
     ## --------------------------------------------------

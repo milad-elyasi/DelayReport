@@ -4,6 +4,7 @@ namespace App\Http\Requests\DelayReport;
 
 use App\Dto\DelayReport\CreateDelayReportDto;
 use App\Http\Requests\BaseFormRequest;
+use App\Rules\ValidDelay;
 
 class CreateDelayReportRequest extends BaseFormRequest
 {
@@ -11,7 +12,7 @@ class CreateDelayReportRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'orderId' => ['int', 'unique:delay_reports,order_id'],
+            'orderId' => ['required', 'int', new ValidDelay()],
         ];
     }
 

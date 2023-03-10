@@ -10,7 +10,11 @@ class DelayReport extends Model
 {
     use HasFactory;
 
-    public const STATUSES = ['ETA', 'QUEUE', 'SOLVED'];
+    public const ETA_STATUS = 'ETA';
+    public const QUEUE_STATUS = 'QUEUE';
+    public const SOLVED_STATUS = 'SOLVED';
+
+    protected $guarded = [];
 
     public function order(): BelongsTo
     {

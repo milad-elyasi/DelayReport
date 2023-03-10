@@ -17,7 +17,8 @@ class GetNewEtaIntegrationService
             report($exception);
             return null;
         }
-        if ($result->data->status) {
+
+        if ($result->status) {
             return $result->data->eta;
         }
         return null;

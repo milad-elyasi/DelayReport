@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Resources\Order;
+namespace App\Resources\Vendor;
 
 use App\Resources\PaginatorCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 
-class OrdersCollection extends PaginatorCollection
+class VendorsCollection extends PaginatorCollection
 {
     protected function getData(): ResourceCollection
     {
