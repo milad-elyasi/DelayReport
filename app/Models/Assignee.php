@@ -10,8 +10,15 @@ class Assignee extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function user(): belongsTo
     {
         return $this->belongsTo(Agent::class);
+    }
+
+    public function order(): belongsTo
+    {
+        return $this->belongsTo(Order::class);
     }
 }

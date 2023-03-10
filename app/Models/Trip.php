@@ -11,6 +11,7 @@ class Trip extends Model
     use HasFactory;
 
     public const STATUSES = ['assigned', 'at_vendor', 'picked', 'delivered'];
+    public const ETA_STATUSES = ['assigned', 'at_vendor', 'picked'];
 
     public function order(): BelongsTo
     {
