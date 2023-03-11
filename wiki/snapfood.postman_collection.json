@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "ca800992-d57f-4c2b-bbbe-c5518ae485ce",
+		"name": "snapfood",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1216357"
+	},
+	"item": [
+		{
+			"name": "delay-report",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "orderId",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9025/api/v1/delay-report",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9025",
+					"path": [
+						"api",
+						"v1",
+						"delay-report"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vendors-delays",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "orderId",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9025/api/v1/vendors/delay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9025",
+					"path": [
+						"api",
+						"v1",
+						"vendors",
+						"delay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
