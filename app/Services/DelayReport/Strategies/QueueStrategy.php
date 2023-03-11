@@ -23,7 +23,7 @@ class QueueStrategy implements LatenessStrategyInterface
         /** @var QueueService $queue */
         $queue = resolve(QueueService::class);
 
-        $queue->addToQueue($orderId);
+        $queue->push($orderId);
 
         return DelayReport::create(
             [

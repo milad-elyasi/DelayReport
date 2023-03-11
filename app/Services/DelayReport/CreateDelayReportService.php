@@ -8,7 +8,6 @@ use App\Models\Order;
 use App\Models\Trip;
 use App\Services\DelayReport\Strategies\EtaStrategy;
 use App\Services\DelayReport\Strategies\QueueStrategy;
-use App\Services\Queue\QueueService;
 
 class CreateDelayReportService
 {
@@ -20,7 +19,6 @@ class CreateDelayReportService
         })->first();
 
         return $this->decide($order->id ?? null)->report($dto->getOrderId());
-
     }
 
     private function decide(?int $orderId): LatenessStrategyInterface

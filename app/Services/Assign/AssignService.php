@@ -16,7 +16,7 @@ class AssignService
     {
         /** @var Assignee $assign */
         $assign = Assignee::query();
-        $orderId = $this->queueService->getFirst() ?? null;
+        $orderId = $this->queueService->pop() ?? null;
 
         if ($orderId === null) {
             return null;
@@ -28,8 +28,6 @@ class AssignService
         if ($history !== null) {
             return $history;
         }
-
-        $this->queueService->pop();
 
         return $assign->create(
             [
